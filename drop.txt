@@ -1,0 +1,24 @@
+
+-- Removing tables to clear the database (when we drop tables we drop also the constraints)
+-- First removing the child tables so we don't get an error with the links that they left as "orphans" 
+
+DROP TABLE sponsorship;
+DROP TABLE sponsor;
+DROP TABLE footballers;
+DROP TABLE team;
+DROP TABLE stadium;
+
+-- Drop the sequencies
+
+DROP SEQUENCE seq_st_id;
+DROP SEQUENCE seq_tm_id;
+DROP SEQUENCE seq_ft_id;
+DROP SEQUENCE seq_sp_id;
+
+-- Emptying the recyclebin
+
+PURGE RECYCLEBIN;
+
+-- Show that database is dropped
+
+SELECT * FROM TAB;
