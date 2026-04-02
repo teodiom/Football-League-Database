@@ -1,0 +1,79 @@
+-- Creation of tables (wiht squencies, defaults and not nulls)
+
+-- Tables
+
+-- || Stadium table ||
+
+CREATE TABLE stadium( 
+	st_id 		NUMBER(6), 
+	st_name 	VARCHAR2(30) NOT NULL, 
+	st_city		VARCHAR2(30) NOT NULL, 
+	st_year		NUMBER(4), 
+	st_capacity	NUMBER(6), 
+	st_review	NUMBER(1)
+);
+
+-- || Team table || 
+
+CREATE TABLE team( 
+	tm_id		NUMBER(6) ,
+	tm_name 	VARCHAR2(30) NOT NULL, 
+	st_id		NUMBER(6), 
+	tm_city		VARCHAR2(30) NOT NULL, 
+	tm_year		NUMBER(4), 
+	tm_goals	NUMBER(6) DEFAULT 0,
+	tm_concede	NUMBER(6) DEFAULT 0
+);
+
+-- || Footballers table ||
+
+CREATE TABLE footballers( 
+	ft_id		NUMBER(9), 
+	ft_name		VARCHAR2(30) NOT NULL, 
+	ft_surname	VARCHAR2(30) NOT NULL,
+	tm_id		NUMBER(6), 
+	ft_position	VARCHAR2(3) NOT NULL, 
+	ft_games	NUMBER(4) DEFAULT 0, 
+	ft_goals	NUMBER(4) DEFAULT 0,
+	ft_contract	NUMBER(12,2), 
+	ft_email	VARCHAR2(30), 
+	ft_country	VARCHAR2(30) NOT NULL, 
+	ft_dob		DATE 
+); 
+
+-- || Sponsor table ||
+
+CREATE TABLE sponsor(
+	sp_id		NUMBER(9),
+	sp_name		VARCHAR2(30) NOT NULL,
+	sp_type		VARCHAR2(30) NOT NULL,
+	sp_city		VARCHAR2(30) NOT NULL
+);
+
+-- || Sponsorship table ||
+
+CREATE TABLE sponsorship(
+	tm_id		NUMBER(6),
+	sp_id		NUMBER(9),
+	sp_fee		NUMBER(15,2) NOT NULL
+);
+
+-- Sequencies
+
+CREATE SEQUENCE seq_st_id START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE seq_tm_id START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE seq_ft_id START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE seq_sp_id START WITH 1 INCREMENT BY 1;
+
+-- Show and describe the tables
+
+SELECT * FROM TAB;
+DESCRIBE stadium;
+DESCRIBE team;
+DESCRIBE footballers;
+DESCRIBE sponsor;
+DESCRIBE sponsorship;
+
+-- Show the sequences
+
+SELECT sequence_name FROM user_sequences WHERE sequence_name LIKE '%SEQ%';
