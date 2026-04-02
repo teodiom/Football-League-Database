@@ -1,0 +1,161 @@
+-- Creation of constraints
+
+
+-- || Stadium Table ||
+
+-- Primary Key
+ALTER TABLE stadium
+ADD CONSTRAINT pk_st_id
+PRIMARY KEY (st_id);
+
+-- Uppercase of Name
+ALTER TABLE stadium
+ADD CONSTRAINT ck_st_name_up
+CHECK (st_name = UPPER(st_name));
+
+-- Uppercase of City
+ALTER TABLE stadium
+ADD CONSTRAINT ck_st_city_up
+CHECK (st_city = UPPER(st_city));
+
+-- Year after 1850
+ALTER TABLE stadium
+ADD CONSTRAINT ck_st_year
+CHECK (st_year > 1850);
+
+-- Positive Capacity
+ALTER TABLE stadium
+ADD CONSTRAINT ck_st_capacity
+CHECK (st_capacity >= 0);
+
+-- Review score from 1 to 5
+ALTER TABLE stadium
+ADD CONSTRAINT ck_st_revieww
+CHECK (st_review BETWEEN 1 AND 5);
+
+
+-- || Team table ||
+
+-- Primary Key
+ALTER TABLE team
+ADD CONSTRAINT pk_tm_id
+PRIMARY KEY (tm_id);
+
+-- Uppercase of Name
+ALTER TABLE team
+ADD CONSTRAINT ck_tm_name_up
+CHECK (tm_name = UPPER(tm_name));
+
+-- Foreign Key to Stadium
+ALTER TABLE team
+ADD CONSTRAINT fk_st_id_tm
+FOREIGN KEY (st_id)
+REFERENCES stadium(st_id);
+
+-- Uppercase of City
+ALTER TABLE team
+ADD CONSTRAINT ck_tm_city_up
+CHECK (tm_city = UPPER(tm_city));
+
+-- Year after 1850
+ALTER TABLE team
+ADD CONSTRAINT ck_tm_year
+CHECK (tm_year > 1850);
+
+
+-- || Footballers table ||
+
+-- Primary Key
+ALTER TABLE footballers
+ADD CONSTRAINT pk_ft_id
+PRIMARY KEY (ft_id);
+
+-- Uppercase of Name
+ALTER TABLE footballers
+ADD CONSTRAINT ck_ft_name_up
+CHECK (ft_name = UPPER(ft_name));
+
+-- Uppercase of Surname
+ALTER TABLE footballers
+ADD CONSTRAINT ck_ft_surname_up
+CHECK (ft_surname = UPPER(ft_surname));
+
+-- Foreign Key to Team
+ALTER TABLE footballers
+ADD CONSTRAINT fk_tm_id_ft
+FOREIGN KEY (tm_id)
+REFERENCES team(tm_id);
+
+-- Positions
+ALTER TABLE footballers
+ADD CONSTRAINT ck_ft_position
+CHECK (ft_position IN ('GK', 'DEF', 'MID', 'ATT'));
+
+-- Uppercase of emails
+ALTER TABLE footballers 
+ADD CONSTRAINT ck_ft_email_up
+CHECK (ft_email = UPPER(ft_email));
+
+-- Unique emails
+ALTER TABLE footballers
+ADD CONSTRAINT u_ft_email
+UNIQUE (ft_email);
+
+-- Uppercase of Country
+ALTER TABLE footballers
+ADD CONSTRAINT ck_ft_country_up
+CHECK (ft_country = UPPER(ft_country));
+
+
+-- || Sponsor Table ||
+
+-- Primary Key
+ALTER TABLE sponsor
+ADD CONSTRAINT pk_sp_id
+PRIMARY KEY (sp_id);
+
+-- Uppercase of Name
+ALTER TABLE sponsor
+ADD CONSTRAINT ck_sp_name_up
+CHECK (sp_name = UPPER(sp_name));
+
+-- Uppercase of Type
+ALTER TABLE sponsor
+ADD CONSTRAINT ck_sp_type_up
+CHECK (sp_type = UPPER(sp_type));
+
+-- Uppercase of City
+ALTER TABLE sponsor
+ADD CONSTRAINT ck_sp_city_up
+CHECK (sp_city = UPPER(sp_city));
+
+
+-- || Sponsorship table ||
+
+-- Primary Key
+ALTER TABLE sponsorship
+ADD CONSTRAINT pk_sponsorship
+PRIMARY KEY (tm_id, sp_id);
+
+-- Foreign Key to team
+ALTER TABLE sponsorship
+ADD CONSTRAINT fk_tm_id_spon
+FOREIGN KEY (tm_id)
+REFERENCES team(tm_id);
+
+-- Foreign Key to sponsor
+ALTER TABLE sponsorship
+ADD CONSTRAINT fk_sp_id_spon
+FOREIGN KEY (sp_id)
+REFERENCES sponsor(sp_id);
+
+-- Positive Fee
+ALTER TABLE sponsorship
+ADD CONSTRAINT ck_sp_fee
+CHECK (sp_fee > 0);
+
+-- Show the constraints
+
+SELECT constraint_name FROM user_constraints WHERE constraint_name LIKE '%ST%';
+SELECT constraint_name FROM user_constraints WHERE constraint_name LIKE '%TM%';
+SELECT constraint_name FROM user_constraints WHERE constraint_name LIKE '%SP%';
