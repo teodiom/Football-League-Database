@@ -1,0 +1,169 @@
+-- || Stadium table ||
+
+-- ** Specifying columns **
+
+INSERT INTO stadium (st_id, st_name, st_city, st_year, st_capacity, st_review)
+VALUES (seq_st_id.NEXTVAL, 'ETIHAD STADIUM', 'MANCHSTER', 2003, 53422, 4); 
+
+INSERT INTO stadium (st_id, st_name, st_city, st_year, st_capacity, st_review)
+VALUES (seq_st_id.NEXTVAL, 'STAMFORD BRIDGE', 'LONDON', 1877, 40344, 4); 
+
+INSERT INTO stadium (st_id, st_name, st_city, st_year, st_capacity, st_review)
+VALUES (seq_st_id.NEXTVAL, 'PARC DE PRINCES', 'PARIS', 1897, 47929, 3);
+
+INSERT INTO stadium (st_id, st_name, st_city, st_year, st_capacity, st_review)
+VALUES (seq_st_id.NEXTVAL, 'WANDA METROPOLITANO', 'MADRID', 2017, 67703, 4);
+
+
+-- ** Without specifying columns **
+
+INSERT INTO stadium 
+VALUES (seq_st_id.NEXTVAL, 'SANTIAGO BERNABEU', 'MADRID', 1947, 81444, 5); 
+
+INSERT INTO stadium 
+VALUES (seq_st_id.NEXTVAL, 'CAMP NOU', 'BARCELONA', 1957, 99354, 4); 
+
+INSERT INTO stadium 
+VALUES (seq_st_id.NEXTVAL, 'ALIANZ ARENA', 'MUNICH', 2005, 75024, 5); 
+
+INSERT INTO stadium
+VALUES (seq_st_id.NEXTVAL, 'STADE LOUIS', 'FONTVIEILLE', 1985, 16360, 1); 
+
+-- || Teams table || 
+
+-- ** Specifying columns **
+
+INSERT INTO team (tm_id, tm_name, st_id, tm_city, tm_year, tm_goals, tm_concede)
+VALUES (seq_tm_id.NEXTVAL, 'MANCHESTER CITY', 1, 'MANCHESTER', 1880, 130, 78);
+
+INSERT INTO team (tm_id, tm_name, st_id, tm_city, tm_year, tm_goals, tm_concede)
+VALUES (seq_tm_id.NEXTVAL, 'CHELSEA', 2, 'LONDON', 1905, 120, 43);
+
+INSERT INTO team (tm_id, tm_name, st_id, tm_city, tm_year, tm_goals, tm_concede)
+VALUES (seq_tm_id.NEXTVAL, 'PARIS SAINT GERMAIN', 3, 'PARIS', 1970, 100, 52);  
+
+-- ** Without specifying columns **
+
+
+INSERT INTO team 
+VALUES (seq_tm_id.NEXTVAL, 'ATLETICO MADRID', 4, 'MADRID', 1903, 65, 27);
+
+INSERT INTO team 
+VALUES (seq_tm_id.NEXTVAL, 'REAL MADRID', 5, 'MADRID', 1902, 78, 84);
+
+INSERT INTO team 
+VALUES (seq_tm_id.NEXTVAL, 'BARCELONA', 6, 'BARCELONA', 1899, 102, 39);
+
+INSERT INTO team 
+VALUES (seq_tm_id.NEXTVAL, 'BAYERN', 7, 'MUNICH', 1900, 99, 32);
+
+-- || Footballers table ||
+
+-- ** Specifying columns ** (goals default is 0 so we don't have to enter a value if someone hasn't scored a goal)
+
+-- Footballers of Manchester City
+
+INSERT INTO footballers (ft_id, ft_name, ft_surname, tm_id, ft_position, ft_games, ft_goals, ft_contract, ft_email, ft_country, ft_dob)
+VALUES (seq_ft_id.NEXTVAL, 'ERLING', 'HAALAND', 1, 'ATT', 14, 15, 27300000, 'E.HAALAND@IHU.GR', 'NORWAY', '21-JUL-2000');
+
+INSERT INTO footballers (ft_id, ft_name, ft_surname, tm_id, ft_position, ft_games, ft_contract, ft_email, ft_country, ft_dob)
+VALUES (seq_ft_id.NEXTVAL, 'RUBEN', 'DIAS', 1, 'DEF', 17, 13000000, 'R.DIAS@IHU.GR', 'PORTUGAL', '14-MAY-1997');
+
+-- Footballers of Chelsea
+
+INSERT INTO footballers (ft_id, ft_name, ft_surname, tm_id, ft_position, ft_games, ft_goals, ft_contract, ft_email, ft_country, ft_dob)
+VALUES (seq_ft_id.NEXTVAL, 'MYKHAILO', 'MUDRYK', 2, 'ATT', 7, 2, 5000000, 'M.MUDRYK@IHU.GR', 'UKRAINE', '05-JAN-2001');
+
+INSERT INTO footballers (ft_id, ft_name, ft_surname, tm_id, ft_position, ft_games, ft_contract, ft_email, ft_country, ft_dob)
+VALUES (seq_ft_id.NEXTVAL, 'ROBERT', 'SANCHEZ', 2, 'GK', 14, 3120000, 'R.SANCHEZ@IHU.GR', 'SPAIN', '18-NOV-1997');
+
+-- Footballers of Real Madrid
+
+INSERT INTO footballers (ft_id, ft_name, ft_surname, tm_id, ft_position, ft_games, ft_goals, ft_contract, ft_email, ft_country, ft_dob)
+VALUES (seq_ft_id.NEXTVAL, 'KYLIAN', 'MBAPPE', 5, 'ATT', 15, 16, 16200000, 'K.MBAPPE@IHU.GR', 'FRANCE', '20-DEC-1998');
+
+-- ** Without specifying columns **
+
+INSERT INTO footballers
+VALUES (seq_ft_id.NEXTVAL, 'TONI', 'KROOS', 5, 'MID', 2, 0, 15600000, 'T.KROOS@IHU.GR', 'GERMANY', '04-JAN-1990'); 
+
+INSERT INTO footballers 
+VALUES (seq_ft_id.NEXTVAL, 'JUDE', 'BELINGHAM', 5, 'MID', 11, 3, 20800000, 'J.BELLINGHAM@IHU.GR', 'ENGLAND', '29-JUN-2003');
+
+-- Footballers of Barcelona
+
+INSERT INTO footballers 
+VALUES (seq_ft_id.NEXTVAL, 'DIAS BELLOLI', 'RAPHINIA', 6, 'ATT', 9, 4, 10500000, 'RAPHINIA@IHU.GR', 'BRAZIL', '14-DEC-1996');
+
+INSERT INTO footballers 
+VALUES (seq_ft_id.NEXTVAL, 'GONZALEZ LOPEZ', 'PEDRI', 6, 'MID', 12, 2, 12500000, 'G.PEDRI@IHU.GR', 'SPAIN', '25-NOV-2002');
+
+-- Footballers of Bayern Munchen
+
+INSERT INTO footballers 
+VALUES (seq_ft_id.NEXTVAL, 'JOSHUA', 'KIMMICH', 7, 'DEF', 9, 0, 20000000, 'J.KIMMICH@IHU.GR', 'GERMANY', '08-FEB-1995');
+
+INSERT INTO footballers 
+VALUES (seq_ft_id.NEXTVAL, 'MANUEL', 'NEUER', 7, 'GK', 5, 0, 21000000, 'M.NEUER@IHU.GR', 'GERMANY', '27-MAR-1986');
+
+I
+-- || Sponsors table ||
+
+-- ** Specifying columns **
+
+INSERT INTO sponsor (sp_id, sp_name, sp_type, sp_city)
+VALUES (seq_sp_id.NEXTVAL, 'NIKE', 'CLOTHING', 'OREGON');
+
+INSERT INTO sponsor (sp_id, sp_name, sp_type, sp_city)
+VALUES (seq_sp_id.NEXTVAL, 'SPOTIFY', 'ELECTRONICS', 'LUXEMBOURG');
+
+-- ** Without specifying columns **
+
+INSERT INTO sponsor 
+VALUES (seq_sp_id.NEXTVAL, 'ADIDAS', 'CLOTHING', 'MUNICH');
+
+INSERT INTO sponsor 
+VALUES (seq_sp_id.NEXTVAL, 'ETIHAD', 'AIRLINE', 'ABU DHABI');
+
+INSERT INTO sponsor 
+VALUES (seq_sp_id.NEXTVAL, 'AUDI', 'AUTOMOTIVE', 'BERLIN');
+
+-- || Sponsorship ||
+
+-- ** Specifying columns **
+
+INSERT INTO sponsorship (tm_id, sp_id, sp_fee)
+VALUES (6, 2, 900000000);
+
+
+INSERT INTO sponsorship (tm_id, sp_id, sp_fee)
+VALUES (2, 1, 400000000);
+
+
+INSERT INTO sponsorship (tm_id, sp_id, sp_fee)
+VALUES (6, 1, 460000000);
+
+
+INSERT INTO sponsorship (tm_id, sp_id, sp_fee)
+VALUES (5, 3, 1700000000);
+
+-- ** Without specifying colmns **
+
+INSERT INTO sponsorship 
+VALUES (1, 4, 1000000000);
+
+
+INSERT INTO sponsorship 
+VALUES (7, 5, 500000000);
+
+
+INSERT INTO sponsorship 
+VALUES (7, 3, 900000000);
+
+-- Show the tables and the data
+
+SELECT * FROM stadium;
+SELECT * FROM team;
+SELECT * FROM footballers;
+SELECT * FROM sponsor;
+SELECT * FROM sponsorship;
